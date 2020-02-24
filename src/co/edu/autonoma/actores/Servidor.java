@@ -6,9 +6,14 @@
 package co.edu.autonoma.actores;
 
 import co.edu.autonoma.elementos.Diccionario;
+import co.edu.autonoma.redes.Amigo;
 import co.edu.autonoma.redes.RedDiccionario;
+import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,6 +32,14 @@ public class Servidor {
         }
         
         RedDiccionario red = new RedDiccionario(4400, diccionario);
+        
+        
+        try {
+            //Aca se añaden los amigos
+            red.addAmigos(new Amigo(InetAddress.getByName("192.168.20.70"), 4400));
+        } catch (UnknownHostException ex) {
+            System.out.println("SERVIDOR: no pude agregar un amigo" + ex);
+        }
         
         try {
             red.activar();

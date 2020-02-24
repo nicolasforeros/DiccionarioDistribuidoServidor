@@ -11,7 +11,7 @@ import java.net.InetAddress;
  *
  * @author nikof
  */
-class Amigo {
+public class Amigo {
     private InetAddress ip;
     private int puerto;
 
