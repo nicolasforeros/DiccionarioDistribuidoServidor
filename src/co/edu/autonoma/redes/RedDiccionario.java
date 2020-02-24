@@ -119,6 +119,10 @@ public class RedDiccionario {
         
             DatagramPacket sobrePeticion = new DatagramPacket(hoja, hoja.length, amigo.getIp(), amigo.getPuerto());		
 
+            if(amigo.getIp()==this.ipCliente){
+                continue;
+            }
+            
             try {
                 socketAmigo.send(sobrePeticion);
             } catch (IOException ex) {
