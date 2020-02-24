@@ -24,7 +24,7 @@ public class Diccionario {
     private Conector conector;
     
     public Diccionario() throws SQLException{
-        this.conector = new Conector("C:/sqlite/diccionario.db");
+        this.conector = new Conector("diccionario.db");
         
         conector.conectar();
         conector.crearTablaTerminos();
