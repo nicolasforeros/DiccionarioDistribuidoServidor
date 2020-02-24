@@ -101,7 +101,7 @@ public class Conector implements ConecctionInterface{
     @Override
     public void editarTermino(String palabra, String definicion) throws SQLException{
     
-        String consulta = "UPDATE terminos SET definicion = ? , "
+        String consulta = "UPDATE terminos SET definicion = ? "
                 + "WHERE palabra = ?";
         
         PreparedStatement st = connect.prepareStatement(consulta);
