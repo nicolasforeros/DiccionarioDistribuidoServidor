@@ -11,6 +11,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -133,6 +134,8 @@ public class RedDiccionario {
         
         DatagramSocket socketAmigo = new DatagramSocket();
         
+        socketAmigo.setSoTimeout(10000);
+        
         String respuestaAmigos = "500";
         
         for (Amigo amigo : amigos) {
@@ -156,7 +159,9 @@ public class RedDiccionario {
 
             try {
                 socketAmigo.receive(sobreRespuesta);
-            } catch (IOException ex) {
+            } catch(SocketTimeoutException ex){
+                continue;
+            }catch (IOException ex) {
                 continue;
             }
             

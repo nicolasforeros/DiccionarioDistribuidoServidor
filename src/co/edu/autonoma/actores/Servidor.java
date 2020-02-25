@@ -36,7 +36,8 @@ public class Servidor {
         
         try {
             //Aca se añaden los amigos
-            red.addAmigos(new Amigo(InetAddress.getByName("127.0.0.1"), 4400));
+            red.addAmigos(new Amigo(InetAddress.getByName("192.168.21.79"), 4400));
+            red.addAmigos(new Amigo(InetAddress.getByName("192.168.21.137"), 4400));
         } catch (UnknownHostException ex) {
             System.out.println("SERVIDOR: no pude agregar un amigo -> " + ex);
         }
