@@ -8,6 +8,7 @@ package co.edu.autonoma.redes;
 import java.net.InetAddress;
 
 /**
+ * Un amigo de la red del diccionario, al que le puede enviar mensajes
  *
  * @author nikof
  */

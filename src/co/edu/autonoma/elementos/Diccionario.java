@@ -19,7 +19,7 @@ import java.sql.SQLException;
 public class Diccionario {
     
     /**
-     * Se encarga de la gestion con la base de datos
+     * Se encarga de la gestion con la base de datos que contiene los terminos
      */
     private Conector conector;
     
@@ -31,6 +31,12 @@ public class Diccionario {
         System.out.println("SERVIDOR=> Conectado a la base de datos");
     }
     
+    /**
+     * Recibe un comando y lo interpreta para realizar una operacion
+     * 
+     * @param comando
+     * @return la respuesta del comando
+     */
     public byte[] recibirComando(byte[] comando){
         
         String mensaje = new String(comando).trim();
@@ -82,6 +88,13 @@ public class Diccionario {
         return respuesta.getBytes();
     }
     
+    /**
+     * Busca por la definicion de un termino dando su palabra, y que este se
+     * encuentre en la base de datos
+     * 
+     * @param palabra
+     * @return 
+     */
     private String buscarDefinicion(String palabra){
         try {
             return this.conector.consultarTermino(palabra);
@@ -90,6 +103,12 @@ public class Diccionario {
         }
     }
     
+    /**
+     * Añade un termino a la base de datos del diccionario
+     * 
+     * @param termino
+     * @return 
+     */
     private boolean agregarTermino(Termino termino){
         try {
             this.conector.agregarTermino(termino);
@@ -99,6 +118,12 @@ public class Diccionario {
         }
     }
     
+    /**
+     * Elimina un termino de la base de datos del diccionario
+     * 
+     * @param palabra
+     * @return 
+     */
     private boolean eliminarTermino(String palabra){
         try {
             this.conector.eliminarTermino(palabra);
@@ -108,6 +133,14 @@ public class Diccionario {
         }
     }
     
+    /**
+     * Edita un termino de la base de datos del diccionario, dando la palabra
+     * del termino que se va a editar y su nueva definicion
+     * 
+     * @param palabra
+     * @param definicion
+     * @return 
+     */
     private boolean editarTermino(String palabra, String definicion){
         try {
             this.conector.editarTermino(palabra, definicion);
@@ -117,6 +150,12 @@ public class Diccionario {
         }
     }
     
+    /**
+     * Obtiene todas las palabras de terminos disponibles en la base de datos de
+     * diccionario
+     * 
+     * @return 
+     */
     private String listarTerminos(){
         try {
             return this.conector.listarTerminos();

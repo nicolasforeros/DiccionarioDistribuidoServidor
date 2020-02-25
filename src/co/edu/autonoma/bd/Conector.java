@@ -11,12 +11,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
+ * Se encarga de conectar el diccionario con la base de datos en SQLite
  *
  * @author estuam
  */
@@ -31,7 +29,7 @@ public class Conector implements ConecctionInterface{
     
     /**
      *
-     * @throws java.sql.SQLException
+     * @throws SQLException
      */
     @Override
     public void conectar() throws SQLException{
@@ -50,7 +48,6 @@ public class Conector implements ConecctionInterface{
     /**
      *
      * @param termino
-     * @return
      * @throws java.sql.SQLException
      */
     @Override

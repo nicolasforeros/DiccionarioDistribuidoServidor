@@ -16,8 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Se encarga de la la comunicacion en red con los clientes o amigos
  *
- * @author nikof
+ * @author nicolas f
  */
 public class RedDiccionario {
     private DatagramSocket socket = null;
@@ -34,6 +35,10 @@ public class RedDiccionario {
         this.amigos = new ArrayList<>();
     }
     
+    /**
+     *
+     * @throws SocketException
+     */
     public void activar()throws SocketException{
         socket = new DatagramSocket(this.puerto);
         
@@ -66,10 +71,20 @@ public class RedDiccionario {
         }
     }
     
+    /**
+     *
+     */
     public void desactivar(){
         socket.close();
     }
     
+    /**
+     *
+     * @param mensaje
+     * @param destinatario
+     * @param puerto
+     * @throws IOException
+     */
     public void enviarMensaje(byte[] mensaje, InetAddress destinatario, int puerto) throws IOException{
         byte[] hoja = mensaje;
         
@@ -78,6 +93,11 @@ public class RedDiccionario {
         socket.send(sobre);
     }
     
+    /**
+     *
+     * @return
+     * @throws IOException
+     */
     public byte[] recibirMensaje() throws IOException{
         byte[] hoja = new byte[1000];		
 
@@ -119,7 +139,8 @@ public class RedDiccionario {
         
             DatagramPacket sobrePeticion = new DatagramPacket(hoja, hoja.length, amigo.getIp(), amigo.getPuerto());		
 
-            if(amigo.getIp()==this.ipCliente){
+            if(amigo.getIp().getHostName().equals(this.ipCliente.getHostName())){
+                System.out.println("SERVIDOR=> mi amigo es el mismo cliente, continuando...");
                 continue;
             }
             
